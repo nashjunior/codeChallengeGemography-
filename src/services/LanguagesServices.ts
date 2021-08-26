@@ -5,7 +5,10 @@ import { IRepositories } from '../interfaces/IRepositories';
 import AppError from '../errors/AppError';
 
 type ILanguageReturn = {
-  [language: string]: string[];
+  [language: string]: {
+    qtd: number;
+    repos: string[];
+  };
 };
 
 class LanguagesService {
@@ -25,19 +28,30 @@ class LanguagesService {
 
       const { items } = data;
 
-      return items.reduce<ILanguageReturn>((customReturn, item) => {
-        if (!customReturn[item.language]) {
+      const reposPerLanguage = items.reduce<ILanguageReturn>(
+        (customReturn, item) => {
+          if (!customReturn[item.language]) {
+            return {
+              ...customReturn,
+              [item.language]: {
+                qtd: 1,
+                repos: [item.html_url],
+              },
+            };
+          }
+
           return {
             ...customReturn,
-            [item.language]: [item.html_url],
+            [item.language]: {
+              qtd: customReturn[item.language].qtd + 1,
+              repos: [...customReturn[item.language].repos, item.html_url],
+            },
           };
-        }
+        },
+        {} as ILanguageReturn,
+      );
 
-        return {
-          ...customReturn,
-          [item.language]: [...customReturn[item.language], item.html_url],
-        };
-      }, {} as ILanguageReturn);
+      return reposPerLanguage;
     } catch (error) {
       if ((error as AxiosError).isAxiosError)
         throw new AppError((error as AxiosError).response?.data);
