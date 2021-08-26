@@ -30,6 +30,12 @@ class LanguagesService {
 
       const reposPerLanguage = items.reduce<ILanguageReturn>(
         (customReturn, item) => {
+
+          /**
+           * 1) check if language exists in object
+           * 2) If not exists return the language as object key 
+           *    containing the repo and quantity
+          */
           if (!customReturn[item.language]) {
             return {
               ...customReturn,
@@ -39,6 +45,12 @@ class LanguagesService {
               },
             };
           }
+
+
+          /**
+           * 3) Else return all previous languages, and the current language 
+           *    increments the repo and quantity by one
+          */
 
           return {
             ...customReturn,
