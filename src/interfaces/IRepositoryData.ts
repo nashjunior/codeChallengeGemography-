@@ -2,5 +2,5 @@
 export type IRepositoryData = {
   id: number;
   language: string;
-  url: string;
+  html_url: string;
 };
