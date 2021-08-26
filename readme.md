@@ -1,10 +1,10 @@
-#Api Language List
+# Api Language List
 A simple api REST microservice created using typescript that requests to github api that list the languages used by the 100 trending public repos on GitHub, and for every language, you need to calculate the attributes below :point_down:
 
 * Number of repos using this language
 * The list of repos using the language
 
-##Technologies used
+## Technologies used
 
 * Typescript
 * Javascript
@@ -12,7 +12,7 @@ A simple api REST microservice created using typescript that requests to github 
 * Axios
 
 
-##Installation and usage
+## Installation and usage
 
 Once inside the folder run 
 ```bash
@@ -23,7 +23,7 @@ yarn
 yarn dev
 ```
 
-##Build
+## Build
 Once inside the folder if not installed the dependencies run 
 
 ```bash
