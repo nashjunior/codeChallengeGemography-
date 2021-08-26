@@ -12,7 +12,7 @@ class LanguagesService {
   async fetchRepositories(dateSearch: string): Promise<any> {
     const sanitazedDate = parseISO(dateSearch);
 
-    if (!isDate(sanitazedDate)) throw new AppError('Data inválida');
+    if (!isDate(sanitazedDate)) throw new AppError('Invalid Date');
     try {
       const { data } = await api.get<IRepositories>('repositories', {
         params: {
