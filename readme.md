@@ -23,6 +23,7 @@ yarn
 yarn dev
 ```
 
+then make a simnple request <http://ip:port>
 ## Build
 Once inside the folder if not installed the dependencies run 
 
